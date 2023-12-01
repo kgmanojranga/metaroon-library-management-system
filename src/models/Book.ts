@@ -1,12 +1,12 @@
-export class Book {
-    private id: number;
-    private title: string;
+import {LibraryItem} from "./LibraryItem";
+
+export class Book extends LibraryItem{
+
     private author: string;
     private ISBN: number;
 
     constructor(id: number, title: string, author: string, ISBN: number) {
-        this.id = id;
-        this.title = title;
+        super(id, title);
         this.author = author;
         this.ISBN = ISBN;
     }
