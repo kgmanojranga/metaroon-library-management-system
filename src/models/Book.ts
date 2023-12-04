@@ -12,6 +12,6 @@ export class Book extends LibraryItem{
     }
 
     public display(): void {
-        console.log("This is Book Class");
+        console.log(`This is ${this.title} Book`);
     }
 }

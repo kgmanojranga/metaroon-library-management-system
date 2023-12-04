@@ -1,8 +1,9 @@
 import {Book} from "./Book";
+import {LibraryItem} from "./LibraryItem";
 
 export class LibraryCatalogue {
-    libraryItems: Book[] = [];
-    addItem(item: Book): void {
+    libraryItems: LibraryItem[] = [];
+    addItem(item: LibraryItem): void {
         this.libraryItems.push(item);
     }
     display(): void {

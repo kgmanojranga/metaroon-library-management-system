@@ -11,7 +11,7 @@ export class AudioBook extends LibraryItem {
     }
 
     display() {
-        console.log(`This audio book is ${this.title}`)
+        console.log(`This is ${this.title} Audio Book`)
     }
 
 }
