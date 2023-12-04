@@ -1,0 +1,44 @@
+@startuml
+abstract class LibraryItem {
+    #id: number
+    #title: string
+    +constructor(id: number, title: string)
+    {abstract} +display(): void
+}
+
+class Book extends LibraryItem {
+    -author: string
+    -ISBN: string
+    +constructor(id: number, title: string, author: string, ISBN: string)
+    +display(): void
+}
+
+class AudioBook extends LibraryItem {
+    -narrator: string
+    -length: number
+    +constructor(id: number, title: string, narrator: string, length: number)
+    +display(): void
+}
+
+class User {
+    -name: string
+    -email: string
+    +getName(): string
+    +setName(name: string): void
+    +getEmail(): string
+    +setEmail(email: string): void
+    +borrowBook(bookTitle: string): void
+    +manageLibrary(): void
+}
+
+class LibraryCatalogue {
+    -libraryItems: LibraryItem[]
+    -static instance: LibraryCatalogue
+    +static getInstance(): LibraryCatalogue
+    +addItem(item: LibraryItem): void
+    +displayItems(): void
+}
+
+User "1" -- "*" LibraryItem : borrows
+LibraryCatalogue "1" -- "*" LibraryItem : contains
+@enduml
