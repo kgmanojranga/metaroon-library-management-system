@@ -6,4 +6,8 @@ export abstract class LibraryItem {
         this.id = id;
         this.title = title;
     }
+
+    display(){
+        console.log("Display items")
+    };
 }
