@@ -3,7 +3,7 @@ import {Book} from "./models/Book";
 import {AudioBook} from "./models/AudioBook";
 
 const main = () => {
-    const libraryCatalogue = new LibraryCatalogue();
+    const libraryCatalogue = LibraryCatalogue.getInstance();
 
     const book1 = new Book(1, "Harry Potter and the Philosopher's Stone", "J.K. Rowling", 9780747532699);
     const book2 = new Book(2, "Harry Potter and the Chamber of Secrets", "J.K. Rowling", 9780439064873);
@@ -16,6 +16,8 @@ const main = () => {
     libraryCatalogue.display();
 
     book1.display();
+
+    const libraryCatalogue2 = LibraryCatalogue.getInstance();
 }
 
 main();
