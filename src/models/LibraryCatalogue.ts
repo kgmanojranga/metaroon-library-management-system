@@ -1,4 +1,3 @@
-import {Book} from "./Book";
 import {LibraryItem} from "./LibraryItem";
 
 export class LibraryCatalogue {

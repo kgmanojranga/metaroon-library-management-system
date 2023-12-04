@@ -21,32 +21,31 @@ Welcome to the TypeScript Library Management project! This project serves as a s
 │   package.json
 │   pnpm-lock.yaml
 │   README.md
-│   tsconfig.json
-│
+│   tsconfig.json                                                                                                      tr
+│   
+├───.idea
+│       .gitignore
+│       library-management-system.iml    
+│       misc.xml
+│       modules.xml
+│       vcs.xml
+│       workspace.xml
+│       
 └───src
-    │   index.ts
-    │
-    └───models
-            Book.ts
-            LibraryCatalogue.ts
-            User.ts
+│   classDiagrams.puml
+│   index.ts
+│
+└───models
+AudioBook.ts
+Book.ts
+LibraryCatalogue.ts
+LibraryItem.ts
+User.ts
 ```
 
 ## Purpose
 
 The purpose of this project is to provide a simple and extensible library management system written in TypeScript. It includes basic functionality such as adding books to a library catalog, displaying the library contents, and allowing users to borrow books.
-
-## Functionality
-
-The key functionalities of this project include:
-
-1. **Book Class (`Book.ts`):** Represents a book with properties such as ID, title, author, and ISBN. It includes a `display` method.
-
-2. **User Class (`User.ts`):** Represents a library user with properties like name and email. It includes methods for borrowing books and managing the library.
-
-3. **LibraryCatalogue Class (`LibraryCatalogue.ts`):** Manages a collection of books (`Book` instances). It allows adding books to the catalog and displaying the current catalog.
-
-4. **Main Script (`index.ts`):** Demonstrates the usage of the above classes by creating instances and calling their methods.
 
 
 ## How It Interacts with Other Components
@@ -57,37 +56,77 @@ The UML diagram illustrates the relationships between the classes:
 
 ```
 @startuml
-class Book {
-    -id: number
-    -title: string
+abstract class LibraryItem {
+    #id: number
+    #title: string
+    +constructor(id: number, title: string)
+    {abstract} +display(): void
+}
+
+class Book extends LibraryItem {
     -author: string
-    -ISBN: number
-    +constructor(id: number, title: string, author: string, ISBN: number)
+    -ISBN: string
+    +constructor(id: number, title: string, author: string, ISBN: string)
+    +display(): void
+}
+
+class AudioBook extends LibraryItem {
+    -narrator: string
+    -length: number
+    +constructor(id: number, title: string, narrator: string, length: number)
     +display(): void
 }
 
 class User {
     -name: string
     -email: string
-    +constructor(name: string, email: string)
+    +getName(): string
+    +setName(name: string): void
+    +getEmail(): string
+    +setEmail(email: string): void
     +borrowBook(bookTitle: string): void
     +manageLibrary(): void
 }
 
 class LibraryCatalogue {
-    -libraryItems: Book[]
-    +addItem(item: Book): void
+    -libraryItems: LibraryItem[]
+    -static instance: LibraryCatalogue
+    +static getInstance(): LibraryCatalogue
+    +addItem(item: LibraryItem): void
     +displayItems(): void
 }
 
-User "1" -- "*" Book: borrows
-LibraryCatalogue "1" -- "*" Book: contains
+User "1" -- "*" LibraryItem : borrows
+LibraryCatalogue "1" -- "*" LibraryItem : contains
 @enduml
 ```
 
-- The `LibraryCatalogue` class interacts with the `Book` class to manage a collection of books.
-- The `User` class interacts with the `Book` class for borrowing books and managing the library.
-- The main script (`index.ts`) demonstrates the usage of the classes by creating instances and calling their methods.
+## SOLID Principles
+
+### 1. Single Responsibility Principle (SRP):
+
+- Each class has a single responsibility:
+  - **User**: Manages user information and interactions.
+  - **LibraryItem**: Represents an abstract library item.
+  - **Book** and **AudioBook**: Implement specific types of library items.
+  - **LibraryCatalogue**: Manages the collection of library items.
+
+### 2. Open/Closed Principle (OCP):
+
+- The system is open for extension:
+  - Additional library item types can be added without modifying existing code.
+
+### 3. Liskov Substitution Principle (LSP):
+
+- The `Book` and `AudioBook` classes can be used interchangeably with `LibraryItem` references in the `LibraryCatalogue`.
+
+### 4. Interface Segregation Principle (ISP):
+
+- Each class has focused methods related to its responsibilities, adhering to the ISP.
+
+### 5. Dependency Inversion Principle (DIP):
+
+- The `LibraryCatalogue` class depends on abstractions (`LibraryItem`), not on concrete implementations (`Book` and `AudioBook`).
 
 ## Specific Methods and Logic
 
