@@ -8,6 +8,7 @@ export class LibraryCatalogue {
 
     }
 
+    //Implementing the Singleton pattern to ensure only one instance is created using LIbraryCatalogue class
     public static getInstance(): LibraryCatalogue {
         if(!LibraryCatalogue.instance) {
             LibraryCatalogue.instance = new LibraryCatalogue();

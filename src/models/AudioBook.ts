@@ -10,6 +10,7 @@ export class AudioBook extends LibraryItem {
         this.length = length;
     }
 
+    // Overriding and Implementing unique display method from LibraryItem class
     display() {
         console.log(`This is ${this.title} Audio Book`)
     }

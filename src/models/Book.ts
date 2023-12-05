@@ -11,6 +11,7 @@ export class Book extends LibraryItem{
         this.ISBN = ISBN;
     }
 
+    // Overriding and Implementing unique display method from LibraryItem class
     public display(): void {
         console.log(`This is ${this.title} Book`);
     }
