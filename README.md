@@ -6,9 +6,8 @@ Welcome to the TypeScript Library Management project! This project serves as a s
 
 - [File Structure](#file-structure)
 - [Purpose](#purpose)
-- [Functionality](#functionality)
-- [Interactions](#interactions)
-- [Specific Methods and Logic](#specific-methods-and-logic)
+- [How It Interacts with Other Components](#how-it-interacts-with-other-components)
+- [SOLID Principles](#solid-principles)
 - [Getting Started](#getting-started)
 - [Scripts](#scripts)
 - [Dependencies](#dependencies)
